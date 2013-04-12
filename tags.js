@@ -54,11 +54,13 @@ function tags(tag, options, children) {
 		{
 			element.appendChild(children[i])
 
-			if(children[i].id != undefined)
-				element['$' + children[i].id] = children[i]
+			var name = children[i].getAttribute('name')
+			if(name != undefined)
+				element['$' + name] = children[i]
 		}
+		else if(children[i] == undefined) continue
 		else
-			element.innerHTML = children[i]
+			element.appendChild(document.createTextNode(children[i]))
 
 	return element
 }
@@ -76,4 +78,5 @@ function tags(tag, options, children) {
 			} 
 		})(arguments[i])
 })('html', 'div', 'p', 'input', 'body', 'a', 'textarea', 'canvas',
-	'td', 'tr', 'table')
+	'td', 'tr', 'table', 'fieldset', 'form', 'legend', 'caption',
+	'span')
