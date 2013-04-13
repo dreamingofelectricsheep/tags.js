@@ -16,12 +16,13 @@ module('new_module', function(tags, dom)
 {
 	var body = dom.body
 
-	body.appendChild(tags.div({ class: 'test-div', id: 'id' },
-		tags.input({ placeholder: 'Type something in here' }),
-		'And a bit of text for good measure'))
+	body.appendChild(
+		tags.div({ class: 'test-div', id: 'id' },
+			tags.input({ placeholder: 'Type something in here' }),
+			'And a bit of text for good measure'))
 
 	return function() { alert("I'm an exported function!") }
-}
+})
 
 module('other_module', function(new_module)
 {
