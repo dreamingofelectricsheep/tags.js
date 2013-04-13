@@ -1,0 +1,17 @@
+<html>
+<head>
+<title>Testing tags.js</title>
+<script type="text/javascript" src="tags.js"></script>
+<script type="text/javascript">
+module('main', function(tags) {
+
+	var body = document.getElementsByTagName('body')[0]
+
+	body.appendChild(tags.div({}, 'Looks like the basic functionality is working!'))
+})
+</script>
+</head>
+<body>
+</body>
+</html>
+
