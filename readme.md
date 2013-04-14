@@ -27,12 +27,14 @@ module('new_module', function(tags, dom)
 module('other_module', function(new_module)
 {
 	new_module()
+
+	return { one: 'hello', two: 'world' }
 })
 
-module('module_with_optional_dependancies', function(require)
+module('module_with_optional_dependencies', function(require)
 	var optional = require('other_module')
 
 	if(optional != undefined)
-		optional()
+		alert(optional.one + ' ' + optional.two)
 })
 ```
