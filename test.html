@@ -1,15 +1,57 @@
 <html>
 <head>
 <title>Testing tags.js</title>
+<script type="text/javascript" src="module.js"></script>
 <script type="text/javascript" src="tags.js"></script>
 <script type="text/javascript">
-module('main', function(tags) {
+module('second2', function(first, 
 
-	var body = document.getElementsByTagName('body')[0]
+	tags,   second) {
 
-	body.appendChild(tags.div({}, 'Looks like the basic functionality is working!'))
+	tags.body.appendChild(tags.div({}, '21: Ok'))
 })
+
+module('first', function(tags) {
+	tags.body.appendChild(tags.div({}, '1: Looks like the basic functionality is working!'))
+})
+
+module('third', function(first,second, second2,        tags) {
+	tags.body.appendChild(tags.div({}, "3: If these numbers are sorted, everything's ok"))
+})
+
+module('second', function(tags, first) { 
+	tags.body.appendChild(tags.div({}, '20: A brown fox jumped over a lazy dog'))
+})
+
+module('test-results', function(tags, first, second, second2, third) {
+	var text = []
+
+	for(var i = 0; i < tags.body.children.length; i++)
+	{
+		text.push(tags.body.children[i].innerHTML)
+	}
+
+	var sorted = text.slice().sort()
+
+	for(var i in text)
+		if(text[i] != sorted[i]) return
+
+	tags.body.classList.add('ok')
+})
+
+
 </script>
+<style type="text/css">
+body
+{
+	background: red;
+	color: white;
+}
+.ok
+{
+	background: green;
+}
+</style>
 </head>
 <body>
 </body>
