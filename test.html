@@ -23,6 +23,10 @@ module('second', function(tags, first) {
 	tags.body.appendChild(tags.div({}, '20: A brown fox jumped over a lazy dog'))
 })
 
+module('fourth', function(require,    third) {
+	require('tags').body.appendChild(require('tags').div({}, '4: Optional dependency is working'))
+})
+
 module('test-results', function(tags, first, second, second2, third) {
 	var text = []
 

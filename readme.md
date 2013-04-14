@@ -28,4 +28,11 @@ module('other_module', function(new_module)
 {
 	new_module()
 })
+
+module('module_with_optional_dependancies', function(require)
+	var optional = require('other_module')
+
+	if(optional != undefined)
+		optional()
+})
 ```

@@ -126,4 +126,13 @@ module.waiting_on = {}
 return module
 }()
 
+module('require', function() {
+	return function(mod) 
+	{ 
+		var req_mod = module.loaded[mod]
+		if(req_mod!= undefined)
+			return req_mod.exports
+	}
+})
+
 
