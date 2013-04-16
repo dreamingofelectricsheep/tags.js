@@ -12,11 +12,13 @@ module('second2', function(first,
 })
 
 module('first', function(tags) {
-	tags.body.appendChild(tags.div({}, '1: Looks like the basic functionality is working!'))
+	tags.body.appendChild(tags.div({}, 
+		'1: Looks like the basic functionality is working!'))
 })
 
 module('third', function(first,second, second2,        tags) {
-	tags.body.appendChild(tags.div({}, "3: If these numbers are sorted, everything's ok"))
+	tags.body.appendChild(tags.div({}, 
+		"3: If these numbers are sorted, everything's ok"))
 })
 
 module('second', function(tags, first) { 
@@ -24,7 +26,9 @@ module('second', function(tags, first) {
 })
 
 module('fourth', function(require,    third) {
-	require('tags').body.appendChild(require('tags').div({}, '4: Optional dependency is working'))
+	require('tags').body.appendChild(
+		require('tags').div({ style: { background: 'yellow' }}, 
+			'4: Optional dependency is working'))
 })
 
 module('test-results', function(tags, first, second, second2, third) {

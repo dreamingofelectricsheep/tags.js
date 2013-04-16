@@ -5,7 +5,17 @@ function tags(tag, options, children) {
 	var element = dom.document.createElement(tag)
 
 	for(var i in options)
-		element.setAttribute(i, options[i])
+	{
+		if(i == 'style')
+		{
+			for(var j in options[i])
+				element.style[j] = options[i][j]
+		}
+		else
+		{
+			element.setAttribute(i, options[i])
+		}
+	}
 
 
 	for(var i in children)
