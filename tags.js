@@ -53,6 +53,21 @@ each(text_tags, function(tag)
 
 tags.body = dom.body
 
+tags.append = function(parent)
+{
+	var children = Array.prototype.slice.call(arguments, 1)
+
+	each(children, function(c)
+		{
+			if(typeof c != 'object')
+				c = dom.document.createTextNode(c)
+			
+			parent.appendChild(c)
+		})
+
+	return parent
+}
+
 return tags
 })
 

@@ -31,6 +31,15 @@ module('fourth', function(require,    third) {
 			'4: Optional dependency is working'))
 })
 
+module('fifth', function(fourth, tags) {
+	var d = tags.div({})
+
+	tags.append(d, tags.div({ style: { background: 'blue' }}, 'test'),
+		'Hello')
+
+	tags.append(tags.body, d)
+})
+
 module('test-results', function(tags, first, second, second2, third) {
 	var text = []
 
