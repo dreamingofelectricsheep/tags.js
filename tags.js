@@ -36,7 +36,7 @@ function tags(tag, options, children) {
 
 var text_tags = ['html', 'div', 'p', 'input', 'a', 'textarea', 'canvas',
 	'td', 'tr', 'table', 'fieldset', 'form', 'legend', 'caption',
-	'span']
+	'span', 'ul', 'li']
 
 each(text_tags, function(tag) 
 	{ 
