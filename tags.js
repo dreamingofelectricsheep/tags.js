@@ -1,6 +1,23 @@
 
 module('tags', function(dom) {
 
+function bind(element, child)
+{
+	if(typeof child != 'object')
+		child = dom.document.createTextNode(child)
+
+
+	element.appendChild(child)
+
+	if(child.attributes)
+	{
+		var name = child.attributes['name']
+
+		if(name != undefined)
+			element['$' + name] = child
+	}
+}
+
 function tags(tag, options, children) {
 	var element = tag == 'fragment' ?
 		dom.document.createDocumentFragment() :
@@ -15,23 +32,16 @@ function tags(tag, options, children) {
 		}
 		else
 		{
-			element.setAttribute(i, options[i])
+			element.attributes[i] = options[i]
 		}
 	}
 
 
-	for(var i in children)
-		if(typeof children[i] == 'object')
+	each(children, 
+		function(c)
 		{
-			element.appendChild(children[i])
-
-			var name = children[i].getAttribute('name')
-			if(name != undefined)
-				element['$' + name] = children[i]
-		}
-		else if(children[i] == undefined) continue
-		else
-			element.appendChild(dom.document.createTextNode(children[i]))
+			bind(element, c)
+		})
 
 	return element
 }
@@ -61,10 +71,7 @@ tags.append = function(parent)
 
 	each(children, function(c)
 		{
-			if(typeof c != 'object')
-				c = dom.document.createTextNode(c)
-			
-			parent.appendChild(c)
+			bind(parent, c)
 		})
 
 	return parent
