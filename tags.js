@@ -2,7 +2,9 @@
 module('tags', function(dom) {
 
 function tags(tag, options, children) {
-	var element = dom.document.createElement(tag)
+	var element = tag == 'fragment' ?
+		dom.document.createDocumentFragment() :
+		dom.document.createElement(tag)
 
 	for(var i in options)
 	{
@@ -36,7 +38,7 @@ function tags(tag, options, children) {
 
 var text_tags = ['html', 'div', 'p', 'input', 'a', 'textarea', 'canvas',
 	'td', 'tr', 'table', 'fieldset', 'form', 'legend', 'caption',
-	'span']
+	'span', 'fragment']
 
 each(text_tags, function(tag) 
 	{ 
