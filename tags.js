@@ -9,9 +9,9 @@ function bind(element, child)
 
 	element.appendChild(child)
 
-	if(child.attributes)
+	if(child.getAttribute)
 	{
-		var name = child.attributes['name']
+		var name = child.getAttribute('name')
 
 		if(name != undefined)
 			element['$' + name] = child
@@ -23,18 +23,19 @@ function tags(tag, options, children) {
 		dom.document.createDocumentFragment() :
 		dom.document.createElement(tag)
 
-	for(var i in options)
-	{
-		if(i == 'style')
+	if(element.setAttribute)
+		for(var i in options)
 		{
-			for(var j in options[i])
-				element.style[j] = options[i][j]
+			if(i == 'style')
+			{
+				for(var j in options[i])
+					element.style[j] = options[i][j]
+			}
+			else
+			{
+				element.setAttribute(i, options[i])
+			}
 		}
-		else
-		{
-			element.attributes[i] = options[i]
-		}
-	}
 
 
 	each(children, 
