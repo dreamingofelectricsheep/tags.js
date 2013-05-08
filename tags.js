@@ -3,6 +3,8 @@ module('tags', function(dom) {
 
 function bind(element, child)
 {
+	if(child == undefined) return
+
 	if(typeof child != 'object')
 		child = dom.document.createTextNode(child)
 
