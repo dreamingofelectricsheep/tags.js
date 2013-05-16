@@ -1,12 +1,50 @@
 
-module('tags', function(dom) {
+each = function(obj, f)
+{
+	if(obj instanceof Array)
+		for(var i = 0; i < obj.length; i++)
+			f(obj[i], i, obj)
+	else
+		for(var i in obj)
+			f(obj[i], i, obj)
+}
+
+range = function()
+{
+	var r = [],
+		step = 1,
+		start = 0,
+		end = 0
+
+	switch(arguments.length)
+	{
+		case 1:
+			end = arguments[0]
+			break
+		case 2:
+			start = arguments[0]
+			end = arguments[1]
+			break
+		case 3:
+			start = arguments[0]
+			end = arguments[1]
+			step = arguments[2]
+			break
+	}
+	
+	for(var i = start; i < end; i += step)
+		r.push(i)
+
+	return r
+}
+
 
 function bind(element, child)
 {
 	if(child == undefined) return
 
 	if(typeof child != 'object')
-		child = dom.document.createTextNode(child)
+		child = document.createTextNode(child)
 
 
 	element.appendChild(child)
@@ -20,10 +58,11 @@ function bind(element, child)
 	}
 }
 
-function tags(tag, options, children) {
+function tags(tag, options, children)
+{
 	var element = tag == 'fragment' ?
-		dom.document.createDocumentFragment() :
-		dom.document.createElement(tag)
+		document.createDocumentFragment() :
+		document.createElement(tag)
 
 	if(element.setAttribute)
 		for(var i in options)
@@ -66,7 +105,6 @@ each(text_tags, function(tag)
 		} 
 	})
 
-tags.body = dom.body
 
 tags.append = function(parent)
 {
@@ -80,16 +118,4 @@ tags.append = function(parent)
 	return parent
 }
 
-return tags
-})
-
-window.onload = function()
-{
-	module('dom', function() 
-		{
-			return {
-					document: document,
-					body: document.getElementsByTagName('body')[0]
-				}
-		})
-}
+module.exports = tags
