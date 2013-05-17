@@ -90,7 +90,7 @@ function tags(tag, options, children)
 
 var text_tags = ['html', 'div', 'p', 'input', 'a', 'textarea', 'canvas',
 	'td', 'tr', 'table', 'fieldset', 'form', 'legend', 'caption',
-	'fragment',	'span', 'ul', 'li', 'br']
+	'fragment',	'span', 'ul', 'li', 'br', 'label']
 
 each(text_tags, function(tag) 
 	{ 
